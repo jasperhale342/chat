@@ -1,12 +1,12 @@
-package com.example.user.services
+package com.example.chat.user.services
 
-import com.bukalapak.hero.models.User
-import com.bukalapak.hero.repositories.UserRepository
+import com.example.chat.user.models.User
+import com.example.chat.user.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
-import javax.persistence.EntityNotFoundException
+import jakarta.persistence.EntityNotFoundException
 
 @Service
 class UserService {

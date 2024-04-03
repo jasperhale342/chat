@@ -1,4 +1,4 @@
-package com.chat.User.models
+package com.example.chat.user.models
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.security.core.userdetails.UserDetails
