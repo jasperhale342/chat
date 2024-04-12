@@ -1,7 +1,7 @@
-package com.example.chat.user.controllers
+package com.example.chat.controllers
 
-import com.example.chat.user.models.User
-import com.example.chat.user.services.UserService
+import com.example.chat.models.User
+import com.example.chat.services.UserService
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*

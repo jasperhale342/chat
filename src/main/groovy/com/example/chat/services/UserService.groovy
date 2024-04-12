@@ -1,7 +1,7 @@
-package com.example.chat.user.services
+package com.example.chat.services
 
-import com.example.chat.user.models.User
-import com.example.chat.user.repositories.UserRepository
+import com.example.chat.models.User
+import com.example.chat.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service

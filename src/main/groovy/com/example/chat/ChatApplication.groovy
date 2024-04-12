@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.chat;
 
 import java.util.Arrays;
 
@@ -15,16 +15,16 @@ public class ChatApplication {
     SpringApplication.run(ChatApplication, args)
 }
 
-	@Bean
-	CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-		return { String[] args ->
-			println("Let's inspect the beans provided by Spring Boot:")
-			def beanNames = ctx.getBeanDefinitionNames()
-			beanNames.sort()
-			beanNames.each { beanName ->
-				println(beanName)
-			}
-		}
-	}
+	// @Bean
+	// CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+	// 	return { String[] args ->
+	// 		println("Let's inspect the beans provided by Spring Boot:")
+	// 		def beanNames = ctx.getBeanDefinitionNames()
+	// 		beanNames.sort()
+	// 		beanNames.each { beanName ->
+	// 			println(beanName)
+	// 		}
+	// 	}
+	// }
 
 }
