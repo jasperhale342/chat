@@ -2,9 +2,14 @@ package com.example.chat.controllers
 
 import com.example.chat.models.User
 import com.example.chat.services.UserService
+import com.example.chat.dto.RegisterUserDto
+import com.example.chat.dto.UserDto
+import com.example.chat.util.UserMapper
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
+
+
 
 import jakarta.transaction.Transactional
 
@@ -26,8 +31,13 @@ class UserController {
   }
 
   @PostMapping('')
-  User save(@RequestBody User user) {
-    userService.save(User)
+  String save(@RequestBody RegisterUserDto registerUserDto) {
+    if (registerUserDto.password != registerUserDto.password2) {
+      return "error"
+    } 
+    def user =  UserMapper.toUserFromRegisterUser(registerUserDto)
+    userService.save(user)
+    return "user created"
   }
 
   @PutMapping('{id}')

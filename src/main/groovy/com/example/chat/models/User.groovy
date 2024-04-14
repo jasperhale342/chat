@@ -14,6 +14,10 @@ abstract class User implements UserDetails {
 
   String password
 
+  String firstName
+
+  String lastName
+
   boolean enabled = true
 
   boolean accountNonExpired = true
