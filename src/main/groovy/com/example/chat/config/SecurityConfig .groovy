@@ -1,4 +1,4 @@
-package com.example.chat.securityConfig
+package com.example.chat.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Bean
@@ -15,10 +15,10 @@ class SecurityConfiguration {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests { authz ->
-           authz.requestMatchers("/ping").permitAll()
-            authz.requestMatchers("/user").permitAll()
+            authz.requestMatchers("/ping").permitAll()
+            authz.requestMatchers("/user").permitAll().and().csrf().disable();
         }
-        http.build();
+        return http.build();
     }
 
     @Bean
