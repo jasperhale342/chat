@@ -7,7 +7,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name="users")
-abstract class User implements UserDetails {
+class User{
 
   @Id
   String username
@@ -25,4 +25,6 @@ abstract class User implements UserDetails {
   boolean accountNonLocked = true
 
   boolean credentialsNonExpired = true
+
+  public User() {}
 }

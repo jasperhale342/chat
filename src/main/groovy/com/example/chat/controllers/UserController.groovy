@@ -33,17 +33,22 @@ class UserController {
     userService.findById(id)
   }
 
-  @PostMapping(path='')
-  String save(@RequestBody RegisterUserDto registerUserDto) {
+  @PostMapping(path='', consumes = "application/json", produces = "application/json")
+  @ResponseBody
+  User save(@RequestBody RegisterUserDto registerUserDto) {
 
     println("about to add a user")
-    println(registerUserDto)
-    if (registerUserDto.password != registerUserDto.password2) {
-      return "error"
-    } 
-    def user =  modelMapper.map(registerUserDto, User.class)
-    userService.save(user)
-    return "user created"
+    // println(registerUserDto.firstName)
+    // if (registerUserDto.password != registerUserDto.password2) {
+    //   return "error"
+    // } 
+    User user =  modelMapper.map(registerUserDto, User.class)
+    println("mapped user")
+    println(user.dump())
+    User _user = userService.create(user)
+    println("created user")
+    println(_user.firstName)
+    return _user
   }
 
   @PutMapping('{id}')
