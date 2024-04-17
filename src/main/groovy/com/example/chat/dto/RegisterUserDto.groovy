@@ -1,5 +1,7 @@
 package com.example.chat.dto
 
+import com.example.chat.validation.PasswordMatchValidator
+
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
@@ -11,7 +13,7 @@ class RegisterUserDto {
     @Size(min = 2, max = 100, message = "The length of full name must be between 2 and 100 characters.")
     String firstName
 
-    @NotBlank(message = "Last name is required.")
+    @NotEmpty(message = "Last name is required.")
     @Size(min = 2, max = 100, message = "The length of full name must be between 2 and 100 characters.")
     String lastName
     
@@ -20,6 +22,7 @@ class RegisterUserDto {
     String username
 
     @NotEmpty(message = "password is required.")
+    @PasswordMatchValidator()
     String password
     
     @NotEmpty(message = "confirm password is required.")

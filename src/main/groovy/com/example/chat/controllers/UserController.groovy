@@ -38,16 +38,9 @@ class UserController {
 
   @PostMapping(path='', consumes = "application/json", produces = "application/json")
   ResponseEntity<RegisterUserDto> save(@Valid @RequestBody RegisterUserDto registerUserDto) {
-
-    
-    if (registerUserDto.password != registerUserDto.password2) {
-      throw new MethodArgumentNotValidException () 
-    } 
-
     User user = new User(username: registerUserDto.username, firstName: registerUserDto.firstName, lastName: registerUserDto.lastName, password: registerUserDto.password)
     // User user =  modelMapper.map(registerUserDto, User.class
     userService.create(user)
- 
     return new ResponseEntity<>(registerUserDto, HttpStatus.OK);
   }
 
