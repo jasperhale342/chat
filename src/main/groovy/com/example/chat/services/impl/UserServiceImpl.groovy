@@ -32,12 +32,7 @@ class UserServiceImpl implements UserService{
   }
 
   User create(User user) {
-    println("saving a user")
-    println(user.dump())
-    def password = user.password
-    println("the passwor is: " + password)
     user.password = passwordEncoder.encode(user.password)
-    println("changed the password")
     userRepository.save(user)
   }
 

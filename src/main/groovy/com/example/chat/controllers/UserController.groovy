@@ -8,10 +8,13 @@ import com.example.chat.dto.UserDto
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-
-
+import org.springframework.http.ResponseEntity
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import jakarta.transaction.Transactional
+import jakarta.validation.Valid
+
 
 @RestController
 @RequestMapping('user')
@@ -34,21 +37,18 @@ class UserController {
   }
 
   @PostMapping(path='', consumes = "application/json", produces = "application/json")
-  @ResponseBody
-  User save(@RequestBody RegisterUserDto registerUserDto) {
+  ResponseEntity<RegisterUserDto> save(@Valid @RequestBody RegisterUserDto registerUserDto) {
 
-    println("about to add a user")
-    // println(registerUserDto.firstName)
-    // if (registerUserDto.password != registerUserDto.password2) {
-    //   return "error"
-    // } 
-    User user =  modelMapper.map(registerUserDto, User.class)
-    println("mapped user")
-    println(user.dump())
-    User _user = userService.create(user)
-    println("created user")
-    println(_user.firstName)
-    return _user
+    
+    if (registerUserDto.password != registerUserDto.password2) {
+      throw new MethodArgumentNotValidException () 
+    } 
+
+    User user = new User(username: registerUserDto.username, firstName: registerUserDto.firstName, lastName: registerUserDto.lastName, password: registerUserDto.password)
+    // User user =  modelMapper.map(registerUserDto, User.class
+    userService.create(user)
+ 
+    return new ResponseEntity<>(registerUserDto, HttpStatus.OK);
   }
 
   @PutMapping('{id}')
