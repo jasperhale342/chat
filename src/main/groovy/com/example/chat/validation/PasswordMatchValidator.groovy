@@ -1,6 +1,7 @@
 package com.example.chat.validation
 
 import com.example.chat.dto.RegisterUserDto
+import com.example.chat.validation.PasswordMatch
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

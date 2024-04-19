@@ -1,11 +1,14 @@
 package com.example.chat.dto
 
-import com.example.chat.validation.PasswordMatchValidator
+// import com.example.chat.validation.PasswordMatchValidator
+import com.example.chat.validation.PasswordMatch;
 
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 
+
+@PasswordMatch
 class RegisterUserDto {
     public RegisterUserDto() {}
 
@@ -22,7 +25,7 @@ class RegisterUserDto {
     String username
 
     @NotEmpty(message = "password is required.")
-    @PasswordMatchValidator()
+  
     String password
     
     @NotEmpty(message = "confirm password is required.")

@@ -24,9 +24,16 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             .stream()
             .map(DefaultMessageSourceResolvable::getDefaultMessage)
             .collect(Collectors.toList());
+        println("here are the errors")
+        // println(errors)
         
+        // body.each { key, value ->
+        // println "$key:$value"
+        //     }
+        
+
         body.put("errors", errors);
-        
+        body.put("a", "aa")
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
   }
 }
