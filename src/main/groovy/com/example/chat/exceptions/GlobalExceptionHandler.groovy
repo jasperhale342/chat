@@ -10,30 +10,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.validation.FieldError
 
 @ControllerAdvice
-class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+class GlobalExceptionHandler{
   
-    ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        Map<String, List<String>> body = new HashMap<>();
-    
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
         List<String> errors = ex.getBindingResult()
             .getFieldErrors()
             .stream()
             .map(DefaultMessageSourceResolvable::getDefaultMessage)
             .collect(Collectors.toList());
-        println("here are the errors")
-        // println(errors)
-        
-        // body.each { key, value ->
-        // println "$key:$value"
-        //     }
-        
-
-        body.put("errors", errors);
-        body.put("a", "aa")
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
   }
 }
