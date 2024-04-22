@@ -21,7 +21,7 @@ class GlobalExceptionHandler{
     @ExceptionHandler(MethodArgumentNotValidException.class)
     ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
         List<String> errors = ex.getBindingResult()
-            .getFieldErrors()
+            .getAllErrors()
             .stream()
             .map(DefaultMessageSourceResolvable::getDefaultMessage)
             .collect(Collectors.toList());

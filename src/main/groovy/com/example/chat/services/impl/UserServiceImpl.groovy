@@ -18,7 +18,7 @@ class UserServiceImpl implements UserService{
   PasswordEncoder passwordEncoder
 
   List<User> findAll() {
-    userRepository.findAll().asList()
+    return userRepository.findAll().asList()
   }
 
   User findById(String id) {

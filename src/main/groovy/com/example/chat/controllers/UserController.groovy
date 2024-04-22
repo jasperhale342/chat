@@ -27,8 +27,16 @@ class UserController {
   ModelMapper modelMapper
 
   @GetMapping('')
-  List findAll() {
-    UserService.findAll()
+  ResponseEntity<List<UserDto>> findAll() {
+    List<User>  users = userService.findAll()
+    List<UserDto> userDtos = new  ArrayList<UserDto>();
+    for(user: users) {
+      UserDto userDto = new UserDto(firstName:user.firstName, lastName:user.lastName, username:user.username);
+      userDtos.add(userDto)
+    }
+
+  return new ResponseEntity<List<UserDto>>(userDtos, HttpStatus.OK)
+
   }
 
   @GetMapping('{id}')

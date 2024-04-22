@@ -10,6 +10,7 @@ import jakarta.persistence.*
 class User{
 
   @Id
+  @ManyToMany(mappedBy = "friendRequests")
   String username
 
   String password
@@ -17,6 +18,21 @@ class User{
   String firstName
 
   String lastName
+
+  @ManyToMany
+  Set<Chat> chats
+
+  @ManyToMany
+  Set<User> friends
+
+  @ManyToMany
+  @JoinTable(
+    name = "friend_requests", 
+    joinColumns = @JoinColumn(name = "user_id"), 
+    inverseJoinColumns = @JoinColumn(name = "friend_id"))
+  Set<User> friendRequests
+
+
 
   boolean enabled = true
 
