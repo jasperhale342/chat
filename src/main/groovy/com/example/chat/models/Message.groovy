@@ -1,4 +1,6 @@
+package com.example.chat.models
 
+import jakarta.persistence.*
 @Entity
 @Table(name="messages")
 class Message {
@@ -6,8 +8,13 @@ class Message {
     @Id
     Integer Id
     
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     User author
+
+    @ManyToOne
+    @JoinColumn(name = 'chat_id')
+    Chat room
 
     String message
 

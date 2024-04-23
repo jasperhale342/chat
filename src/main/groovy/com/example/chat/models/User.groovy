@@ -18,11 +18,16 @@ class User{
 
   String lastName
 
-  @ManyToMany
-  Set<Chat> chats
 
-  @ManyToOne
+  @OneToMany
   Set<Message> messages
+
+  @ManyToMany
+  @JoinTable(
+  name = "chat_rooms", 
+  joinColumns = @JoinColumn(name = "user_id"), 
+  inverseJoinColumns = @JoinColumn(name = "chat_id"))
+  Set<Chat> chats
 
   @ManyToMany
    @JoinTable(

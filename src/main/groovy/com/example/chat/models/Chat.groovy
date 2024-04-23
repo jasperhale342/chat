@@ -1,4 +1,5 @@
-
+package com.example.chat.models
+import jakarta.persistence.*
 @Entity
 @Table(name="chats")
 class Chat {
@@ -6,11 +7,11 @@ class Chat {
     @Id
     Integer Id
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "chats")
     Set<User> users
 
-    @OneToMany
-    Set<Messages> Messages
+    @OneToMany(mappedBy = "room")
+    Set<Message> messages
 
 
 
