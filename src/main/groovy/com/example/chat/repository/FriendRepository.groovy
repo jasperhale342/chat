@@ -7,14 +7,15 @@ import com.example.chat.models.User
 
 import org.springframework.stereotype.Repository
 import org.springframework.data.repository.Repository
+import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.query.Param
 
 
 
 
 
-interface FriendRepository extends Repository<User, String> {
+interface FriendRepository extends JpaRepository <User, String> {
 
-
-    List<User> findByFriends_Username(String username)
+    List<User> findByFriends_Username( String username)
 
 }

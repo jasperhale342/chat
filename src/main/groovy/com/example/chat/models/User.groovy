@@ -1,6 +1,7 @@
 package com.example.chat.models
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
+import com.fasterxml.jackson.annotation.JsonBackReference
 import org.springframework.security.core.userdetails.UserDetails
 
 import jakarta.persistence.*
@@ -30,10 +31,11 @@ class User{
   Set<Chat> chats
 
   @ManyToMany
-   @JoinTable(
+  @JoinTable(
     name = "friends", 
-    joinColumns = @JoinColumn(name = "user_id"), 
-    inverseJoinColumns = @JoinColumn(name = "friend_id"))
+    joinColumns = @JoinColumn(name = "friend_id"), 
+    inverseJoinColumns = @JoinColumn(name = "user_id"))
+  @JsonBackReference
   Set<User> friends
 
   @ManyToMany
