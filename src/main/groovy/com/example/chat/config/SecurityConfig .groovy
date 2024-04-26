@@ -17,6 +17,7 @@ class SecurityConfiguration {
         http.authorizeHttpRequests { authz ->
             authz.requestMatchers("/ping").permitAll()
             authz.requestMatchers("/user").permitAll().and().csrf().disable();
+            authz.requestMatchers("/friend/**").permitAll().and().csrf().disable();
         }
         return http.build();
     }

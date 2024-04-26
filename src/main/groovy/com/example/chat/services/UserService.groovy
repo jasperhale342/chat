@@ -12,5 +12,7 @@ interface UserService {
   User updateEnabled(String id, boolean enabled)
   User deleteById(String id)
 
+  // List<User> findAllFriends(String id)
+
 
 }
