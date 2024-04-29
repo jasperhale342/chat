@@ -10,7 +10,7 @@ class Message {
     
     @ManyToOne
     @JoinColumn(name = "author_id")
-    User author
+    ApplicationUser author
 
     @ManyToOne
     @JoinColumn(name = 'chat_id')

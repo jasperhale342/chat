@@ -8,7 +8,7 @@ class Chat {
     Integer Id
 
     @ManyToMany(mappedBy = "chats")
-    Set<User> users
+    Set<ApplicationUser> users
 
     @OneToMany(mappedBy = "room")
     Set<Message> messages

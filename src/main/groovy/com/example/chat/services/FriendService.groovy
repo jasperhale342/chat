@@ -1,10 +1,10 @@
 package com.example.chat.services
 
-import com.example.chat.models.User
+import com.example.chat.models.ApplicationUser
 
 interface FriendService {
 
-    List<User> findAllFriendsForUser(String username)
+    List<ApplicationUser> findAllFriendsForUser(String username)
     // User findOneFriend(String user, String friend)
     // User removeFriend(String user, String friend)
 

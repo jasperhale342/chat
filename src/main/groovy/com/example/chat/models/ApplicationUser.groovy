@@ -8,7 +8,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name="users")
-class User{
+class ApplicationUser extends UserDetails {
 
   @Id
   String username
@@ -36,14 +36,14 @@ class User{
     joinColumns = @JoinColumn(name = "friend_id"), 
     inverseJoinColumns = @JoinColumn(name = "user_id"))
   @JsonBackReference
-  Set<User> friends
+  Set<ApplicationUser> friends
 
   @ManyToMany
   @JoinTable(
     name = "friend_requests", 
     joinColumns = @JoinColumn(name = "user_id"), 
     inverseJoinColumns = @JoinColumn(name = "friend_id"))
-  Set<User> friendRequests
+  Set<ApplicationUser> friendRequests
 
 
 

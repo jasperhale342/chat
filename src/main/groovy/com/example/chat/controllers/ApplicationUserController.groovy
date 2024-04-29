@@ -1,7 +1,7 @@
 package com.example.chat.controllers
 
-import com.example.chat.models.User
-import com.example.chat.services.UserService
+import com.example.chat.models.ApplicationUser
+import com.example.chat.services.ApplicationUserService
 import com.example.chat.dto.RegisterUserDto
 import com.example.chat.dto.UserDto
 
@@ -21,14 +21,14 @@ import jakarta.validation.Valid
 @Transactional
 class UserController {
   @Autowired
-  UserService userService
+  ApplicationUserService applicationUserService
 
   @Autowired
   ModelMapper modelMapper
 
   @GetMapping('')
   ResponseEntity<List<UserDto>> findAll() {
-    List<User>  users = userService.findAll()
+    List<ApplicationUser>  users = applicationUserService.findAll()
     List<UserDto> userDtos = new  ArrayList<UserDto>();
     for(user: users) {
       UserDto userDto = new UserDto(firstName:user.firstName, lastName:user.lastName, username:user.username);
@@ -40,25 +40,25 @@ class UserController {
   }
 
   @GetMapping('{id}')
-  User findOne(@PathVariable long id) {
-    userService.findById(id)
+  ApplicationUser findOne(@PathVariable long id) {
+    applicationUserService.findById(id)
   }
 
   @PostMapping(path='', consumes = "application/json", produces = "application/json")
   ResponseEntity<RegisterUserDto> save(@Valid @RequestBody RegisterUserDto registerUserDto) {
-    User user = new User(username: registerUserDto.username, firstName: registerUserDto.firstName, lastName: registerUserDto.lastName, password: registerUserDto.password)
+    ApplicationUser user = new ApplicationUser(username: registerUserDto.username, firstName: registerUserDto.firstName, lastName: registerUserDto.lastName, password: registerUserDto.password)
     // User user =  modelMapper.map(registerUserDto, User.class)
-    userService.create(user)
+    applicationUserService.create(user)
     return new ResponseEntity<>(registerUserDto, HttpStatus.OK);
   }
 
   @PutMapping('{id}')
-  User update(@RequestBody User user, @PathVariable long id) {
-    userService.update(User, id)
+  ApplicationUser update(@RequestBody ApplicationUser user, @PathVariable long id) {
+    applicationUserService.update(user, id)
   }
 
   @DeleteMapping('{id}')
-  User deleteById(@PathVariable long id) {
-    userService.deleteById(id)
+  ApplicationUser deleteById(@PathVariable long id) {
+    applicationUserService.deleteById(id)
   }
 }

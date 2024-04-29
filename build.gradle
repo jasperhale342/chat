@@ -21,6 +21,7 @@ java {
 		implementation 'org.springframework.boot:spring-boot-starter-security'
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 		implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+		implementation group: 'org.springframework', name: 'spring-jdbc'
 
 		implementation group: 'org.springframework', name: 'spring-context'
 		implementation group: 'jakarta.validation', name: 'jakarta.validation-api'

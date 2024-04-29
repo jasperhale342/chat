@@ -1,6 +1,6 @@
 package com.example.chat.controllers
 
-import com.example.chat.models.User
+import com.example.chat.models.ApplicationUser
 import com.example.chat.services.FriendService
 import com.example.chat.dto.RegisterUserDto
 import com.example.chat.dto.UserDto
@@ -28,14 +28,14 @@ class FriendController {
   ModelMapper modelMapper
 
   @GetMapping('/{username}')
-  ResponseEntity<List<User>> findAllFriends(@PathVariable("username") String username) {
-    List<User>  users = friendService.findAllFriendsForUser(username)
-    return new ResponseEntity<List<User>>(users, HttpStatus.OK)
+  ResponseEntity<List<ApplicationUser>> findAllFriends(@PathVariable("username") String username) {
+    List<ApplicationUser>  users = friendService.findAllFriendsForUser(username)
+    return new ResponseEntity<List<ApplicationUser>>(users, HttpStatus.OK)
 
   }
 
-  // @GetMapping('/all')
-  // ResponseEntity<List<String>> findAllFriends(@PathVariable String username) {
+  // @PostMapping('/reuqest')
+  // ResponseEntity<List<String>> sendFriendRequest(@PathVariable String username) {
   //   List<String>  users = friendService.findAllFriendsForUser(username)
   //   return new ResponseEntity<List<String>>(users, HttpStatus.OK)
 
