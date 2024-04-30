@@ -15,6 +15,8 @@ import org.springframework.security.authentication.ProviderManager
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.core.userdetails.UserDetailsService
 
+import javax.sql.DataSource
+
 @Configuration
 class SecurityConfiguration {
 

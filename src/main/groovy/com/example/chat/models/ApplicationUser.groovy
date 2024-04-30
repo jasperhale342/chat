@@ -2,13 +2,15 @@ package com.example.chat.models
 
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import com.fasterxml.jackson.annotation.JsonBackReference
+
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.GrantedAuthority
 
 import jakarta.persistence.*
 
 @Entity
 @Table(name="users")
-class ApplicationUser extends UserDetails {
+class ApplicationUser implements UserDetails {
 
   @Id
   String username
@@ -54,6 +56,12 @@ class ApplicationUser extends UserDetails {
   boolean accountNonLocked = true
 
   boolean credentialsNonExpired = true
+
+  Collection<String> authorities
+  Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities
+  }
+
 
   public User() {}
 }
