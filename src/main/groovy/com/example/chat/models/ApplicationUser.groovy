@@ -61,6 +61,9 @@ class ApplicationUser implements UserDetails {
   Collection<? extends GrantedAuthority> getAuthorities() {
     return authorities
   }
+  // ApplicationUser loadByUsername(String username){
+
+  // }
 
 
   public User() {}

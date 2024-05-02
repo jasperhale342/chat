@@ -13,6 +13,7 @@ interface ApplicationUserService extends UserDetailsService {
   ApplicationUser updateEnabled(String id, boolean enabled)
   ApplicationUser deleteById(String id)
 
+  ApplicationUser loadUserByUsername(String username) 
   // List<User> findAllFriends(String id)
 
 

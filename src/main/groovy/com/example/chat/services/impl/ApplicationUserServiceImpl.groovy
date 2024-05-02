@@ -54,5 +54,9 @@ class ApplicationUserServiceImpl implements ApplicationUserService{
     user
   }
 
+  ApplicationUser loadUserByUsername(String username) {
+    return applicationUserRepository.findById(id).orElse(null)
+  }
+
 
 }
