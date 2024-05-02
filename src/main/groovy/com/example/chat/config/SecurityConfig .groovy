@@ -14,11 +14,24 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.authentication.ProviderManager
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.context.annotation.Lazy
 
 import javax.sql.DataSource
 
 @Configuration
-class SecurityConfiguration {
+class SecurityConfiguration{
+    
+    @Lazy 
+    @Autowired
+    @Qualifier("userDetailsService")
+    UserDetailsService userDetailsService;
+
+    // @Autowired
+    // public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    //     auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    // }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -32,18 +45,18 @@ class SecurityConfiguration {
     }
 
 
-
+    
     @Bean
     PasswordEncoder passwordEncoder()
     {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    UserDetailsManager users(DataSource dataSource) {
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-	    return users;
-    }
+    // @Bean
+    // UserDetailsManager users(DataSource dataSource) {
+    //     JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+	//     return users;
+    // }
 
     @Bean
 	public AuthenticationManager authenticationManager(

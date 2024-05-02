@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service
 
 import jakarta.persistence.EntityNotFoundException
 
-@Service
+@Service("userDetailsService")
 class ApplicationUserServiceImpl implements ApplicationUserService{
+
   @Autowired
   ApplicationUserRepository applicationUserRepository
 
@@ -55,7 +56,7 @@ class ApplicationUserServiceImpl implements ApplicationUserService{
   }
 
   ApplicationUser loadUserByUsername(String username) {
-    return applicationUserRepository.findById(id).orElse(null)
+    return applicationUserRepository.findById(username).orElse(null)
   }
 
 
